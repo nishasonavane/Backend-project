@@ -1,6 +1,7 @@
 //require('dotenv').config({path:'./env'})
 import dotenv from "dotenv"
 import connectDB from "./db/index.js"
+import { app } from "tailwind"
 
 dotenv.config({
     path:"./env"
@@ -12,6 +13,15 @@ dotenv.config({
 
 
 connectDB()
+.then(()=>{
+    app.listen(process.env.PORT||8000,()=>{
+        console.log(`server is running at Port ${process.env.PORT}`);
+    })
+
+})
+.catch(()=>{
+    console.log("MongoDb connection Failed !!!", error);
+})
 
 
 /*
